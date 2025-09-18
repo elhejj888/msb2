@@ -95,9 +95,9 @@ def create_tables():
     """Create database tables"""
     try:
         db.create_all()
-        print("Database tables created successfully")
+        print("✅ Database tables created successfully")
     except Exception as e:
-        print(f"Error creating database tables: {str(e)}")
+        print(f"❌ Error creating database tables: {str(e)}")
 
 # Setup authentication routes first (they configure JWT properly)
 setup_auth_routes(app)
@@ -167,10 +167,10 @@ def health_check():
         'timestamp': datetime.now().isoformat()
     })
 
+# Initialize database tables when the app starts (both dev and prod)
+with app.app_context():
+    create_tables()
+    print("🗄️ Database initialization complete")
+
 if __name__ == '__main__':
-    with app.app_context():
-        # Create tables if they don't exist
-        create_tables()
-        print("Database initialized")
-    
     app.run(debug=True, host='0.0.0.0', port=5000)
