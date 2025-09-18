@@ -1,10 +1,19 @@
-import tkinter as tk
-from tkinter import filedialog
 from PIL import Image
 import tempfile
 import os
 
+# Conditional import
+try:
+    import tkinter as tk
+    from tkinter import filedialog
+    HAS_GUI = True
+except ImportError:
+    HAS_GUI = False
+
 def select_images(multiple=False):
+    if not HAS_GUI:
+        raise RuntimeError("GUI not available in this environment. Use web-based file upload instead.")
+    
     root = tk.Tk()
     root.withdraw()
     
@@ -21,6 +30,8 @@ def select_images(multiple=False):
         file_path = filedialog.askopenfilename(title="Select Image", filetypes=filetypes)
         root.destroy()
         return file_path if file_path else None
+
+# Keep convert_to_jpeg as is
 
 def convert_to_jpeg(image_path):
     try:
