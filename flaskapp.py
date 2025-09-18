@@ -46,7 +46,7 @@ app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY', 'jwt-secret-key-chang
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(days=7)
 
 # PostgreSQL Database Configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'postgresql://username:password@localhost/socialmanager')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'postgresql://socialmanager_0kq0_user:kljNaNfCvgtHly8erePShitQbUzGiV0R@dpg-d35vapjipnbc739rfjig-a.oregon-postgres.render.com/socialmanager_0kq0')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Configure upload folder
